@@ -4,22 +4,36 @@
 }
 
 .app-header {
-  background-color: var(--charcoal);
-  min-height: 20vh;
-  max-height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 20vh;
+  max-height: 25vh;
+  background-color: var(--charcoal);
   color: var(--cyan);
 }
 
 .app-footer {
-  background-color: var(--teal);
-  min-height: 10vh;
-  max-height: 15vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 10vh;
+  max-height: 15vh;
+  background-color: var(--teal);
   color: var(--cyan);
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 100%));
+  min-height: 70vh;
+  background-color: var(--charcoal);
+}
+
+.data-container {
+  margin: 2%;
+  border-radius: 1rem;
+  background-color: var(--cyan);
+  color: var(--charcoal)
 }
