@@ -30,17 +30,39 @@ class App extends Component {
       await this.setState({ 
         countries: data
       })
-      // console.log(JSON.stringify(data, null, 2));
-      console.log(this.state.countries);
 
-      let capitalArray = this.state.countries.map(entry => {
-        return ([entry.capital, entry.name])
-      });
-      console.log(capitalArray);
+      for (let entry of data) {
+        let city = entry.capital;
+        console.log(entry.capital);
+        (async () => {
+          const where = encodeURIComponent(JSON.stringify({
+            "name": city
+          }));
+          const response = await fetch(
+            `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=10&include=country&keys=name,country,country.name,country.capital,population,location,cityId,adminCode&where=${where}`,
+            {
+              headers: {
+                'X-Parse-Application-Id': 'KFsBDbVFGZ9WYkvFSkoyRJoFU4ORIL1sv563IDSU', // This is your app's application id
+                'X-Parse-REST-API-Key': 'd6cXuIVw0c1O2nqLfsdFyaLrMnEJ4XFE3E2GK7x0', // This is your app's REST API key
+              }
+            }
+          );
+          const rawResponse = await response.json();
+          // const results = rawResponse.results;
+          console.log(rawResponse);
+        })();
+    }
+
+      await this.setState({ 
+        countries: data
+      })
 
       
+      // console.log(JSON.stringify(data, null, 2));
+      // console.log(this.state.countries);
     })();
-
+    
+    
   };
 
   

@@ -32,8 +32,41 @@
 }
 
 .data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 2%;
   border-radius: 1rem;
   background-color: var(--cyan);
-  color: var(--charcoal)
+  color: var(--charcoal);
+  font-size: 1.4rem;
+}
+
+.data-table {
+  margin: 1rem;
+}
+
+.table-row {
+
+}
+
+.table-header th {
+  background-color: var(--red);
+  font-size: 2rem;
+  color: black;
+}
+
+.data-container td {
+  max-width: 12rem;
+  padding: .5rem 1rem .5rem 1rem;
+  font-weight: 700;
+}
+
+.city-entry {
+  color: black;
+}
+
+.data-container table tr:nth-child(odd) {
+  background-color: var(--yellow);
 }
