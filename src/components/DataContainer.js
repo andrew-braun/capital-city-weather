@@ -5,16 +5,16 @@ const DataContainer = ({ countryList }) => {
         return (
                 <tr key={key} className="table-row">
                     <td className="city-entry">
-                        {value.capital}
+                        {value.city}
                     </td>
                     <td className="country-entry">
-                        {value.name}
+                        {value.country}
                     </td>
                     <td className="continent-entry">
-                        {value.continent.name}
+                        {value.continent}
                     </td>
                     <td className="time-entry">
-                        {value.currentTime}
+                        {value.time}
                     </td>
                 </tr>
             );

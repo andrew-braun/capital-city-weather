@@ -12,11 +12,19 @@ class App extends Component {
       cities: []
     }
   };
-  // Import list of countries with capital city data
+
+  // Import list of countries and city names
   componentDidMount() {
+    // Async API call returning object with country data
     (async () => {
-      const response = await fetch(
-        'https://parseapi.back4app.com/classes/Continentscountriescities_Country?limit=350&order=name&include=continent&excludeKeys=phone,native,currency,shape',
+      // return only capitals of world cities
+      const cityWhere = encodeURIComponent(JSON.stringify({
+        "isCapital": true
+      }));
+
+      // Fetch list of capital cities
+      const cityResponse = await fetch(
+        `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=20&include=country,country.continent&keys=name,country,country.name,country.capital,country.continent,country.continent.name,population,location,cityId,adminCode&where=${cityWhere}`,
         {
           headers: {
             'X-Parse-Application-Id': 'KFsBDbVFGZ9WYkvFSkoyRJoFU4ORIL1sv563IDSU', // This is your app's application id
@@ -24,21 +32,44 @@ class App extends Component {
           }
         }
       );
-      const rawResponse = await response.json();
-      const data = rawResponse.results;
+  
+      const cityResults = await cityResponse.json(); // Here you have the data that you need
+      const cityData = cityResults.results;
+      console.log(JSON.stringify(cityData, null, 2));
 
-      await this.setState({ 
-        countries: data
+      const cleanCityData = Object.entries(cityData).map(([key, value]) => {
+        return (
+          {
+            "city": value.name,
+            "cityGeoNameId": value.cityId,
+            "country": value.country.name,
+            "countryGeoNameId": value.country.objectId,
+            "continent": value.country.continent.name,
+            "latitude": value.location.latitude,
+            "longitude": value.location.longitude,
+
+          }
+        )
       })
-      // console.log(JSON.stringify(data, null, 2));
-      console.log(this.state.countries);
 
-      let capitalArray = this.state.countries.map(entry => {
-        return ([entry.capital, entry.name])
-      });
-      console.log(capitalArray);
+      await this.setState({
+        cities: cleanCityData
+      })
 
-      
+      console.log(cleanCityData);
+
+      for (let city of cleanCityData) {
+        const timezoneResponse = await fetch(`http://api.geonames.org/timezoneJSON?formatted=true&lat=${cleanCityData.latitude}&lng=${cleanCityData.longitude}&username=abdev`);
+        const timezoneData = await timezoneResponse.json();
+        
+        cleanCityData.timezone = timezoneData.timezoneId;
+        cleanCityData.time = timezoneData.time;
+      }
+
+      // await this.setState({
+      //   cities: cleanCityData
+      // })
+    
     })();
 
   };
@@ -50,7 +81,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <main className="main-container">
-          <DataContainer countryList={this.state.countries}/>
+          <DataContainer countryList={this.state.cities}/>
         </main>
         <Footer />
       </div>
