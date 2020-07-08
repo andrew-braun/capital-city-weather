@@ -35,7 +35,7 @@ class App extends Component {
   
       const cityResults = await cityResponse.json(); // Here you have the data that you need
       const cityData = cityResults.results;
-      console.log(JSON.stringify(cityData, null, 2));
+      // console.log(JSON.stringify(cityData, null, 2));
 
       const cleanCityData = Object.entries(cityData).map(([key, value]) => {
         return (
@@ -48,7 +48,11 @@ class App extends Component {
             "latitude": value.location.latitude,
             "longitude": value.location.longitude,
             "timezone": "",
-            "time": ""
+            "time": "",
+            "temp": undefined,
+            "weather": "",
+            "humidity": undefined,
+            "windspeed": undefined
           }
         )
       })
@@ -59,11 +63,24 @@ class App extends Component {
 
 
       for (let city of cleanCityData) {
+        const weatherResponse = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=13ee2a5d09316b306b5e506d3ff09c42&units=metric`)
+        const weatherData = await weatherResponse.json();
+        console.log(weatherData);
+
+        city.temp = weatherData.main.temp;
+        city.weather = weatherData.weather[0].main;
+        city.humidity = weatherData.main.humidity;
+        city.windspeed = weatherData.wind.speed;
+
+        await this.setState({
+          cities: cleanCityData
+        })
+
         const timezoneResponse = await fetch(`http://api.geonames.org/timezoneJSON?lat=${city.latitude}&lng=${city.longitude}&username=abdev`);
         const timezoneData = await timezoneResponse.json();
 
         city.timezone = timezoneData.timezoneId;
-        city.time = timezoneData.time;
+        city.time = timezoneData.time.slice(5);
 
         await this.setState({
           cities: cleanCityData

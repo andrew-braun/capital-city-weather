@@ -16,6 +16,18 @@ const DataContainer = ({ countryList }) => {
                     <td className="time-entry">
                         {value.time}
                     </td>
+                    <td className="temp-entry">
+                        {value.temp} C
+                    </td>
+                    <td className="weather-entry">
+                        {value.weather}
+                    </td>
+                    <td className="humidity-entry">
+                        {value.humidity}%
+                    </td>
+                    <td className="windspeed-entry">
+                        {value.windspeed} km/h
+                    </td>
                 </tr>
             );
     });
@@ -30,7 +42,9 @@ const DataContainer = ({ countryList }) => {
                         <th>Continent</th>
                         <th>Time</th>
                         <th>Temp</th>
-                        <th>Precip</th>
+                        <th>Weather</th>
+                        <th>Humidity</th>
+                        <th>Windspeed</th>
                     </tr>
                 </thead>
                 <tbody>
