@@ -47,7 +47,8 @@ class App extends Component {
             "continent": value.country.continent.name,
             "latitude": value.location.latitude,
             "longitude": value.location.longitude,
-
+            "timezone": "",
+            "time": ""
           }
         )
       })
@@ -56,19 +57,24 @@ class App extends Component {
         cities: cleanCityData
       })
 
-      console.log(cleanCityData);
 
       for (let city of cleanCityData) {
-        const timezoneResponse = await fetch(`http://api.geonames.org/timezoneJSON?formatted=true&lat=${cleanCityData.latitude}&lng=${cleanCityData.longitude}&username=abdev`);
+        const timezoneResponse = await fetch(`http://api.geonames.org/timezoneJSON?lat=${city.latitude}&lng=${city.longitude}&username=abdev`);
         const timezoneData = await timezoneResponse.json();
-        
-        cleanCityData.timezone = timezoneData.timezoneId;
-        cleanCityData.time = timezoneData.time;
+
+        city.timezone = timezoneData.timezoneId;
+        city.time = timezoneData.time;
+
+        await this.setState({
+          cities: cleanCityData
+        })
       }
 
-      // await this.setState({
-      //   cities: cleanCityData
-      // })
+      console.log(cleanCityData);
+
+      await this.setState({
+        cities: cleanCityData
+      })
     
     })();
 
