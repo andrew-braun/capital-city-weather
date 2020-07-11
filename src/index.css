@@ -44,3 +44,33 @@ td {
 ul {
   list-style: none;
 }
+
+@media only screen and (max-width: 720px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media only screen and (max-width: 565px) {
+  html {
+    font-size: 7px;
+  }
+}
+
+@media only screen and (max-width: 495px) {
+  html {
+    font-size: 6px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  html {
+    font-size: 6px;
+  }
+}

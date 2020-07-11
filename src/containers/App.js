@@ -1,110 +1,136 @@
 import React, { Component } from "react";
-import "./App.css";
+import "../styles/App.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import DataContainer from "../components/DataContainer";
+import DataTable from "../components/DataTable";
+import SearchBox from "../components/SearchBox";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      countries: [],
-      cities: []
-    }
-  };
+      cities: [{city: "Kabul"}],
+      searchfield: "",
+    };
+  }
 
   // Import list of countries and city names
   componentDidMount() {
     // Async API call returning object with country data
     (async () => {
       // return only capitals of world cities
-      const cityWhere = encodeURIComponent(JSON.stringify({
-        "isCapital": true
-      }));
+      const cityWhere = encodeURIComponent(
+        JSON.stringify({
+          isCapital: true,
+        })
+      );
 
       // Fetch list of capital cities
       const cityResponse = await fetch(
-        `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=20&include=country,country.continent&keys=name,country,country.name,country.capital,country.continent,country.continent.name,population,location,cityId,adminCode&where=${cityWhere}`,
+        `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=5&include=country,country.continent&keys=name,country,country.name,country.capital,country.continent,country.continent.name,population,location,cityId,adminCode&where=${cityWhere}`,
         {
           headers: {
-            'X-Parse-Application-Id': 'KFsBDbVFGZ9WYkvFSkoyRJoFU4ORIL1sv563IDSU', // This is your app's application id
-            'X-Parse-REST-API-Key': 'd6cXuIVw0c1O2nqLfsdFyaLrMnEJ4XFE3E2GK7x0', // This is your app's REST API key
-          }
+            "X-Parse-Application-Id":
+              "KFsBDbVFGZ9WYkvFSkoyRJoFU4ORIL1sv563IDSU", // This is your app's application id
+            "X-Parse-REST-API-Key": "d6cXuIVw0c1O2nqLfsdFyaLrMnEJ4XFE3E2GK7x0", // This is your app's REST API key
+          },
         }
       );
-  
+
       const cityResults = await cityResponse.json(); // Here you have the data that you need
       const cityData = cityResults.results;
       // console.log(JSON.stringify(cityData, null, 2));
 
       const cleanCityData = Object.entries(cityData).map(([key, value]) => {
-        return (
-          {
-            "city": value.name,
-            "cityGeoNameId": value.cityId,
-            "country": value.country.name,
-            "countryGeoNameId": value.country.objectId,
-            "continent": value.country.continent.name,
-            "latitude": value.location.latitude,
-            "longitude": value.location.longitude,
-            "timezone": "",
-            "time": "",
-            "temp": undefined,
-            "weather": "",
-            "humidity": undefined,
-            "windspeed": undefined
-          }
-        )
-      })
+        return {
+          city: value.name,
+          cityGeoNameId: value.cityId,
+          country: value.country.name,
+          countryGeoNameId: value.country.objectId,
+          continent: value.country.continent.name,
+          latitude: value.location.latitude,
+          longitude: value.location.longitude,
+          timezone: "",
+          time: "",
+          temp: undefined,
+          weather: "",
+          humidity: undefined,
+          windspeed: undefined,
+        };
+      });
 
       await this.setState({
-        cities: cleanCityData
-      })
-
+        cities: cleanCityData,
+      });
 
       for (let city of cleanCityData) {
-        const weatherResponse = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=13ee2a5d09316b306b5e506d3ff09c42&units=metric`)
+        const weatherResponse = await fetch(
+          `http://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=13ee2a5d09316b306b5e506d3ff09c42&units=metric`
+        );
         const weatherData = await weatherResponse.json();
-        console.log(weatherData);
-
-        city.temp = weatherData.main.temp;
-        city.weather = weatherData.weather[0].main;
-        city.humidity = weatherData.main.humidity;
-        city.windspeed = weatherData.wind.speed;
-
-        await this.setState({
-          cities: cleanCityData
-        })
-
-        const timezoneResponse = await fetch(`http://api.geonames.org/timezoneJSON?lat=${city.latitude}&lng=${city.longitude}&username=abdev`);
+        const timezoneResponse = await fetch(
+          `http://api.geonames.org/timezoneJSON?lat=${city.latitude}&lng=${city.longitude}&username=abdev`
+        );
         const timezoneData = await timezoneResponse.json();
+
+        // console.log(weatherData);
 
         city.timezone = timezoneData.timezoneId;
         city.time = timezoneData.time.slice(5);
-
         await this.setState({
-          cities: cleanCityData
-        })
+          cities: cleanCityData,
+        });
+        city.temp = weatherData.main.temp;
+        await this.setState({
+          cities: cleanCityData,
+        });
+        city.weather = weatherData.weather[0].main;
+        await this.setState({
+          cities: cleanCityData,
+        });
+        city.humidity = weatherData.main.humidity;
+        await this.setState({
+          cities: cleanCityData,
+        });
+        city.windspeed = weatherData.wind.speed;
+        await this.setState({
+          cities: cleanCityData,
+        });
       }
 
-      console.log(cleanCityData);
+      // console.log(cleanCityData);
 
       await this.setState({
-        cities: cleanCityData
-      })
-    
+        cities: cleanCityData,
+      });
     })();
+  }
 
-  };
+  onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value });
+  }
 
-  
   render() {
-
+    const searchedCities = this.state.cities.filter((city) => {
+        if (city.city !== undefined) {
+          return ( 
+            city.city.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||
+            city.country.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||          
+            city.continent.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||
+            city.weather.toLowerCase().includes(this.state.searchfield.toLowerCase())
+          )
+        } else {
+          return (city)
+        }
+    });
     return (
       <div className="App">
         <Header />
         <main className="main-container">
-          <DataContainer countryList={this.state.cities}/>
+          <SearchBox searchChange={this.onSearchChange} />
+          <DataTable geoData={searchedCities} />
+          <DataContainer countryList={this.state.cities} />
         </main>
         <Footer />
       </div>

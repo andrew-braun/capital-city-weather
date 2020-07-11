@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/DataContainer.css";
 
 const DataContainer = ({ countryList }) => {
     const capitalArray = Object.entries(countryList).map(([key, value], i) => {
@@ -37,14 +38,14 @@ const DataContainer = ({ countryList }) => {
             <table className="data-table">
                 <thead className="table-header">
                     <tr>
-                        <th>City</th>
-                        <th>Country</th>
-                        <th>Continent</th>
-                        <th>Time</th>
-                        <th>Temp</th>
-                        <th>Weather</th>
-                        <th>Humidity</th>
-                        <th>Windspeed</th>
+                        <th className="city-header">City</th>
+                        <th className="country-header">Country</th>
+                        <th className="continent-header">Continent</th>
+                        <th className="time-header">Time</th>
+                        <th className="temp-header">Temp</th>
+                        <th className="weather-header">Weather</th>
+                        <th className="humidity-header">Humidity</th>
+                        <th className="windspeed-header">Windspeed</th>
                     </tr>
                 </thead>
                 <tbody>

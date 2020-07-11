@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-
 }
 
 .app-header {
@@ -70,3 +69,4 @@
 .data-container table tr:nth-child(odd) {
   background-color: var(--yellow);
 }
+

@@ -1,0 +1,25 @@
+table {
+    counter-reset: rowNumber;
+  }
+  
+  table tr:not(:first-child) {
+    counter-increment: rowNumber;
+  }
+  
+  table tr td:first-child::before {
+    content: counter(rowNumber);
+    font-size: 0;
+    visibility: hidden;
+  }
+  
+
+@media only screen and (max-width: 430px) {
+    .continent-entry {
+        display: none;
+    }
+    .continent-header {
+        display: none;
+    }
+  }
+
+  
