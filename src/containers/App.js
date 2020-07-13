@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import DataContainer from "../components/DataContainer";
 import DataTable from "../components/DataTable";
 import SearchBox from "../components/SearchBox";
+import SortBox from "../components/SortBox";
 
 class App extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class App extends Component {
     this.state = {
       cities: [{city: "Kabul"}],
       searchfield: "",
+      sortfield: ""
     };
   }
 
@@ -108,12 +110,16 @@ class App extends Component {
         cities: cleanCityData,
       });
       
-      console.log(typeof(cleanCityData[0].temp));
+      // console.log(typeof(cleanCityData[0].temp));
     })();
   }
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value });
+  }
+
+  onSortChange = (event) => {
+    this.setState({ sortfield: event.target.value });
   }
 
   render() {
@@ -134,12 +140,51 @@ class App extends Component {
           return (city)
         }
     });
+
+    const sortArray = (arr, type) => {
+      const types = {
+          city: "city",
+          country: "country",
+          continent: "continent",
+          latitude: "latitude",
+          longitude: "longitude",
+          timezone: "timezone",
+          time: "time",
+          date: "date",
+          temp: "temp",
+          weather: "weather",
+          humidity: "humidity",
+          windspeed: "windspeed",
+      };
+
+      const sortProperty = types[type];
+      const sorted = arr.sort((a, b) => {
+          if (a[sortProperty] < b[sortProperty]) {
+            return -1;
+          }
+          if (a[sortProperty] > b[sortProperty]) {
+            return 1;
+          } else {
+            return 0;
+          }
+
+          // b[sortProperty] - a[sortProperty]
+      }
+      );
+      return (sorted);
+    };
+
+    
+    const sortedCities = sortArray(searchedCities, this.state.sortfield);
+    console.log(sortedCities);
+
     return (
       <div className="App">
         <Header />
         <main className="main-container">
+          <SortBox sortChange={this.onSortChange} />
           <SearchBox searchChange={this.onSearchChange} />
-          <DataTable geoData={searchedCities} />
+          <DataTable geoData={sortedCities} />
           <DataContainer countryList={this.state.cities} />
         </main>
         <Footer />
