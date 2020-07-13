@@ -27,6 +27,11 @@ class Row extends React.Component {
           rowNumber={this.props.rowNumber}
         />
         <Cell
+          classProp="date-entry"
+          data={rowData.date}
+          rowNumber={this.props.rowNumber}
+        />
+        <Cell
           classProp="time-entry"
           data={rowData.time}
           rowNumber={this.props.rowNumber}

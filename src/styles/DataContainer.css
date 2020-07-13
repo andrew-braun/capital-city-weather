@@ -12,6 +12,14 @@ table {
     visibility: hidden;
   }
   
+@media only screen and (max-width: 610px) {
+  .continent-entry {
+      display: none;
+  }
+  .continent-header {
+      display: none;
+  }
+}
 
 @media only screen and (max-width: 430px) {
     .continent-entry {
@@ -20,6 +28,28 @@ table {
     .continent-header {
         display: none;
     }
+    .date-entry {
+      display: none;
+    }
+    .date-header {
+      display: none;
   }
+  th {
+    transform:
+      translate(-15px, -23px)
+      rotate(-320deg);
+    max-width: 40px;
+    background-color: transparent !important;
+    text-align: right;
+    border-bottom: 1px solid black;
+    padding: 0;
+  }
+  thead tr {
+    background-color: transparent !important;
+  }
+  tr {
+    max-width: min-content;
+  }
+}
 
   

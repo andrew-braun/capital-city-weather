@@ -15,6 +15,7 @@ const DataTable = ({ geoData }) => {
             <th className="city-header">City</th>
             <th className="country-header">Country</th>
             <th className="continent-header">Continent</th>
+            <th className="date-header">Date</th>
             <th className="time-header">Time</th>
             <th className="temp-header">Temp</th>
             <th className="weather-header">Weather</th>

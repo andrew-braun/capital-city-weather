@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/App.css";
+import "../styles/DataContainer.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import DataContainer from "../components/DataContainer";
@@ -28,7 +29,7 @@ class App extends Component {
 
       // Fetch list of capital cities
       const cityResponse = await fetch(
-        `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=5&include=country,country.continent&keys=name,country,country.name,country.capital,country.continent,country.continent.name,population,location,cityId,adminCode&where=${cityWhere}`,
+        `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=10&include=country,country.continent&keys=name,country,country.name,country.capital,country.continent,country.continent.name,population,location,cityId,adminCode&where=${cityWhere}`,
         {
           headers: {
             "X-Parse-Application-Id":
@@ -53,6 +54,7 @@ class App extends Component {
           longitude: value.location.longitude,
           timezone: "",
           time: "",
+          date: "",
           temp: undefined,
           weather: "",
           humidity: undefined,
@@ -77,7 +79,8 @@ class App extends Component {
         // console.log(weatherData);
 
         city.timezone = timezoneData.timezoneId;
-        city.time = timezoneData.time.slice(5);
+        city.time = timezoneData.time.slice(11);
+        city.date = timezoneData.time.slice(5,10);
         await this.setState({
           cities: cleanCityData,
         });
@@ -104,6 +107,8 @@ class App extends Component {
       await this.setState({
         cities: cleanCityData,
       });
+      
+      console.log(typeof(cleanCityData[0].temp));
     })();
   }
 
@@ -118,7 +123,12 @@ class App extends Component {
             city.city.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||
             city.country.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||          
             city.continent.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||
-            city.weather.toLowerCase().includes(this.state.searchfield.toLowerCase())
+            city.weather.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||
+            city.time.includes(this.state.searchfield) ||
+            city.date.includes(this.state.searchfield) ||
+            (city.temp).toString().includes(this.state.searchfield) ||
+            (city.humidity).toString().includes(this.state.searchfield) ||
+            (city.windspeed).toString().includes(this.state.searchfield)
           )
         } else {
           return (city)
