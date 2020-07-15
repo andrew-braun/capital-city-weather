@@ -1,4 +1,5 @@
 import React from 'react';
+import "../styles/SortBox.css";
 
 const SortBox = ({ sortField, sortChange }) => {
     return (
@@ -10,12 +11,12 @@ const SortBox = ({ sortField, sortChange }) => {
                             type="select"
                             onChange={sortChange}
                         >
-                            <option value="temp">Temperature (low-high)</option>
-                            <option value="windspeed">Windspeed</option>
                             <option value="city">City name</option>
                             <option value="continent">Continent</option>
-                            <option value="weather">Weather</option>
+                            <option value="temp">Temperature</option>
+                            <option value="windspeed">Windspeed</option>
                             <option value="humidity">Humidity</option>
+                            <option value="weather">Weather</option>
                             <option value="date">Date</option>
                             <option value="time">Time</option>
                         </select>

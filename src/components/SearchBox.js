@@ -12,7 +12,7 @@ const SearchBox = ({ searchField, searchChange }) => {
               name="searchbox"
               id="searchbox"
               class="searchbox"
-              placeholder="Search by city"
+              placeholder="Search for any variable"
               maxlength="300"
               onChange={searchChange}
             />

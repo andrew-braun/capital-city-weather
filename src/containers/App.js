@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       cities: [{city: "Kabul"}],
       searchfield: "",
-      sortfield: ""
+      sortfield: "city"
     };
   }
 
@@ -168,7 +168,6 @@ class App extends Component {
             return 0;
           }
 
-          // b[sortProperty] - a[sortProperty]
       }
       );
       return (sorted);
@@ -182,10 +181,11 @@ class App extends Component {
       <div className="App">
         <Header />
         <main className="main-container">
-          <SortBox sortChange={this.onSortChange} />
-          <SearchBox searchChange={this.onSearchChange} />
+          <section className="filter-sort" id="main-filter-sort">
+            <SortBox sortChange={this.onSortChange} />
+            <SearchBox searchChange={this.onSearchChange} />
+          </section>
           <DataTable geoData={sortedCities} />
-          <DataContainer countryList={this.state.cities} />
         </main>
         <Footer />
       </div>

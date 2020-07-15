@@ -8,7 +8,6 @@ const DataTable = ({ geoData }) => {
   });
   return (
     <article className="data-container">
-      <h1>Capitals</h1>
       <table className="data-table">
         <thead className="table-header">
           <tr>

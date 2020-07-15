@@ -35,7 +35,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2%;
+  max-width: 100%;
+  margin: 0 2rem;
   border-radius: 1rem;
   background-color: var(--cyan);
   color: var(--charcoal);
@@ -44,6 +45,8 @@
 
 .data-table {
   margin: 1rem;
+  max-width: 100%;
+  min-width: 80%;
 }
 
 .table-row {
@@ -70,3 +73,11 @@
   background-color: var(--yellow);
 }
 
+.filter-sort {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 80vw;
+  padding: 0 1rem;
+  margin: 0;
+}
