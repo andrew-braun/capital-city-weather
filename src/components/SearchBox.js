@@ -6,14 +6,14 @@ const SearchBox = ({ searchField, searchChange }) => {
     <section role="search">
       <form>
         <fieldset>
-          <label for="searchbox">
+          <label htmlFor="searchbox">
             <input
               type="search"
               name="searchbox"
               id="searchbox"
-              class="searchbox"
+              className="searchbox"
               placeholder="Search for any variable"
-              maxlength="300"
+              maxLength={5}
               onChange={searchChange}
             />
           </label>

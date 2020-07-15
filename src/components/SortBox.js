@@ -3,11 +3,11 @@ import "../styles/SortBox.css";
 
 const SortBox = ({ sortField, sortChange }) => {
     return (
-        <section role="sort">
+        <section>
             <form>
                 <fieldset>
-                    <label for="sortbox">
-                        <select name="sortbox" id="sortbox" class="sortbox"
+                    <label htmlFor="sortbox">
+                        <select name="sortbox" id="sortbox" className="sortbox"
                             type="select"
                             onChange={sortChange}
                         >

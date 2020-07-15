@@ -3,7 +3,6 @@ import "../styles/App.css";
 import "../styles/DataContainer.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import DataContainer from "../components/DataContainer";
 import DataTable from "../components/DataTable";
 import SearchBox from "../components/SearchBox";
 import SortBox from "../components/SortBox";
@@ -175,7 +174,7 @@ class App extends Component {
 
     
     const sortedCities = sortArray(searchedCities, this.state.sortfield);
-    console.log(sortedCities);
+    // console.log(sortedCities);
 
     return (
       <div className="App">
