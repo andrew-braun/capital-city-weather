@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/DataContainer.css";
+import "../styles/DataTable.css";
 import Cell from "./Cell";
 
 class Row extends React.Component {

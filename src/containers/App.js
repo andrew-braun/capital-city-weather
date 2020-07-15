@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/App.css";
-import "../styles/DataContainer.css";
+import "../styles/DataTable.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import DataTable from "../components/DataTable";

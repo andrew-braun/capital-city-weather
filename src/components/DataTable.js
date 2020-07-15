@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/DataContainer.css";
+import "../styles/DataTable.css";
 import Row from "../components/Row";
 
 const DataTable = ({ geoData }) => {
