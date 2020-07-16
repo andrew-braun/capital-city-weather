@@ -13,7 +13,7 @@ const SearchBox = ({ searchField, searchChange }) => {
               id="searchbox"
               className="searchbox"
               placeholder="Search for any variable"
-              maxLength={5}
+              maxLength={150}
               onChange={searchChange}
             />
           </label>

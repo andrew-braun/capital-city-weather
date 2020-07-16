@@ -1,55 +1,107 @@
-table {
-    counter-reset: rowNumber;
-  }
-  
-  table tr:not(:first-child) {
-    counter-increment: rowNumber;
-  }
-  
-  table tr td:first-child::before {
-    content: counter(rowNumber);
-    font-size: 0;
-    visibility: hidden;
-  }
-  
+.data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 2rem 1rem 2rem;
+  border-radius: 0 0 1rem 1rem;
+  background-color: var(--cyan-transparent);
+  color: var(--charcoal);
+  font-size: 1.7rem;
+}
+
+.data-table {
+  margin: 1rem;
+  max-width: 100%;
+  min-width: 80%;
+}
+
+.table-header th {
+  background-color: var(--charcoal);
+  font-size: 2.1rem;
+  color: white;
+}
+
+.data-container td {
+  max-width: max-content;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  border-width: 0 1px 0 1px;
+  border-color: var(--teal);
+  border-style: solid;
+  font-weight: 700;
+}
+
+.city-entry {
+  color: black;
+}
+
+.data-container .table-row {
+  background: var(--cyan);
+}
+
+.data-container table tr:nth-child(odd) {
+  background-color: #E6F9AF;
+}
+
+.data-table {
+  counter-reset: rowNumber;
+}
+
+.data-table tr:not(:first-child) {
+  counter-increment: rowNumber;
+}
+
+.data-table table tr td:first-child::before {
+  content: counter(rowNumber);
+  font-size: 0;
+  visibility: hidden;
+}
+
+.data-table tr:hover, .data-container table tr:nth-child(odd):hover {
+  background-color: var(--red);
+}
+
+.data-table td:hover {
+  background-color: var(--charcoal);
+  color: var(--cyan);
+}
+
 @media only screen and (max-width: 610px) {
   .continent-entry {
-      display: none;
+    display: none;
   }
   .continent-header {
-      display: none;
+    display: none;
   }
 }
 
 @media only screen and (max-width: 430px) {
-    .continent-entry {
-        display: none;
-    }
-    .continent-header {
-        display: none;
-    }
-    .date-entry {
-      display: none;
-    }
-    .date-header {
-      display: none;
+  .continent-entry {
+    display: none;
   }
-  th {
-    transform:
-      translate(-15px, -23px)
-      rotate(-320deg);
+  .continent-header {
+    display: none;
+  }
+  .date-entry {
+    display: none;
+  }
+  .date-header {
+    display: none;
+  }
+  .data-container th {
+    transform: translate(-15px, -23px) rotate(-320deg);
     max-width: 40px;
     background-color: transparent !important;
     text-align: right;
     border-bottom: 1px solid black;
     padding: 0;
   }
-  thead tr {
+  .data-container thead tr {
     background-color: transparent !important;
   }
-  tr {
+  .data-container tr {
     max-width: min-content;
   }
 }
-
-  

@@ -30,54 +30,13 @@
   background-color: var(--charcoal);
 }
 
-.data-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  margin: 0 2rem;
-  border-radius: 1rem;
-  background-color: var(--cyan);
-  color: var(--charcoal);
-  font-size: 1.7rem;
-}
-
-.data-table {
-  margin: 1rem;
-  max-width: 100%;
-  min-width: 80%;
-}
-
-.table-row {
-
-}
-
-.table-header th {
-  background-color: var(--red);
-  font-size: 2rem;
-  color: black;
-}
-
-.data-container td {
-  max-width: 12rem;
-  padding: .5rem 1rem .5rem 1rem;
-  font-weight: 700;
-}
-
-.city-entry {
-  color: black;
-}
-
-.data-container table tr:nth-child(odd) {
-  background-color: var(--yellow);
-}
-
 .filter-sort {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  max-width: 80vw;
+  max-width: 100%;
   padding: 0 1rem;
-  margin: 0;
+  margin: 0 2rem 0 2rem;
+  background: var(--cyan-transparent);
+  border-radius: 1rem 1rem 0 0;
 }
