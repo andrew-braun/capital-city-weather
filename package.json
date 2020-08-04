@@ -2,7 +2,7 @@
   "name": "capital-city-weather",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://andrew-braun.github.io/capital-city-weather",
+  // "homepage": "https://andrew-braun.github.io/capital-city-weather",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
