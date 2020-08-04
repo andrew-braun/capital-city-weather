@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/capital-city-weather/static/css/main.7ac74128.chunk.css",
+    "main.js": "/capital-city-weather/static/js/main.1df611a0.chunk.js",
+    "main.js.map": "/capital-city-weather/static/js/main.1df611a0.chunk.js.map",
+    "runtime-main.js": "/capital-city-weather/static/js/runtime-main.4d6da2e2.js",
+    "runtime-main.js.map": "/capital-city-weather/static/js/runtime-main.4d6da2e2.js.map",
+    "static/js/2.3506b416.chunk.js": "/capital-city-weather/static/js/2.3506b416.chunk.js",
+    "static/js/2.3506b416.chunk.js.map": "/capital-city-weather/static/js/2.3506b416.chunk.js.map",
+    "index.html": "/capital-city-weather/index.html",
+    "precache-manifest.5d40e48e3ecb26de5f9171a4749d4f5a.js": "/capital-city-weather/precache-manifest.5d40e48e3ecb26de5f9171a4749d4f5a.js",
+    "service-worker.js": "/capital-city-weather/service-worker.js",
+    "static/css/main.7ac74128.chunk.css.map": "/capital-city-weather/static/css/main.7ac74128.chunk.css.map",
+    "static/js/2.3506b416.chunk.js.LICENSE.txt": "/capital-city-weather/static/js/2.3506b416.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4d6da2e2.js",
+    "static/js/2.3506b416.chunk.js",
+    "static/css/main.7ac74128.chunk.css",
+    "static/js/main.1df611a0.chunk.js"
+  ]
+}
