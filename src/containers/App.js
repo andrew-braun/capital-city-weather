@@ -69,11 +69,11 @@ class App extends Component {
 
       for (let city of cleanCityData) {
         const weatherResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=13ee2a5d09316b306b5e506d3ff09c42&units=metric`
+          `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=13ee2a5d09316b306b5e506d3ff09c42&units=metric`
         );
         const weatherData = await weatherResponse.json();
         const timezoneResponse = await fetch(
-          `https://api.geonames.org/timezoneJSON?lat=${city.latitude}&lng=${city.longitude}&username=abdev`
+          `https://cors-anywhere.herokuapp.com/http://api.geonames.org/timezoneJSON?lat=${city.latitude}&lng=${city.longitude}&username=abdev`
         );
         const timezoneData = await timezoneResponse.json();
 
