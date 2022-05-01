@@ -3,6 +3,7 @@ import "./App.css"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import DataContainer from "../components/DataContainer"
+import { REACT_APP_APPLICATION_ID, REACT_APP_REST_API_KEY } from "../env.js"
 
 class App extends Component {
 	constructor() {
@@ -19,8 +20,8 @@ class App extends Component {
 				"https://parseapi.back4app.com/classes/Continentscountriescities_Country?limit=350&order=name&include=continent&excludeKeys=phone,native,currency,shape",
 				{
 					headers: {
-						"X-Parse-Application-Id": "process.env.APPLICATION_ID", // This is your app's application id
-						"X-Parse-REST-API-Key": "process.env.REST_API_KEY", // This is your app's REST API key
+						"X-Parse-Application-Id": REACT_APP_APPLICATION_ID, // This is your app's application id
+						"X-Parse-REST-API-Key": REACT_APP_REST_API_KEY, // This is your app's REST API key
 					},
 				}
 			)
@@ -44,10 +45,8 @@ class App extends Component {
 						`https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=10&include=country&keys=name,country,country.name,country.capital,population,location,cityId,adminCode&where=${where}`,
 						{
 							headers: {
-								"X-Parse-Application-Id":
-									"KFsBDbVFGZ9WYkvFSkoyRJoFU4ORIL1sv563IDSU", // This is your app's application id
-								"X-Parse-REST-API-Key":
-									"d6cXuIVw0c1O2nqLfsdFyaLrMnEJ4XFE3E2GK7x0", // This is your app's REST API key
+								"X-Parse-Application-Id": REACT_APP_APPLICATION_ID, // This is your app's application id
+								"X-Parse-REST-API-Key": REACT_APP_REST_API_KEY, // This is your app's REST API key
 							},
 						}
 					)

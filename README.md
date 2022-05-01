@@ -29,3 +29,4 @@ A React learning app calling on APIs to discover the weather in capital cities a
 ## Planned Features
 
 - GeT API working again
+- Get GitHub Pages back up with environment variables
